@@ -74,6 +74,10 @@ command * cmdPop(cmdstack * cmdstack) {
 
 // Dumps all pending commands and returns
 void cmdClear(cmdstack * cmdstack) {
+	while (cmdstack->top >= 0) {
+		printf("%s\n", cmdTop(cmdstack)->text);
+		free(cmdPop(cmdstack));
+	}
 	cmdstack->top = -1;
 	return;
 }
